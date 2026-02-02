@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skywork セミナー｜図解コンテンツ概要</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        securityLevel: 'loose',
+        fontFamily: 'sans-serif',
+        themeVariables: {
+          primaryColor: '#4CAF50',
+          primaryTextColor: '#fff',
+          primaryBorderColor: '#9575CD',
+          lineColor: '#009688',
+          secondaryColor: '#FFC107',
+          tertiaryColor: '#f0f0f0'
+        },
+        flowchart: { curve: 'basis' }
+      });
+    });
+  </script>
+
+  <style>
+    :root {
+      --main-color: #4CAF50;
+      --accent-color-1: #9575CD;
+      --accent-color-2: #FFC107;
+      --accent-color-3: #009688;
+      --accent-color-4: #E91E63;
+      --background-color: #FAFAFA;
+      --text-color: #333;
+      --light-text-color: #FFF;
+      --border-color: #E0E0E0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Hiragino Sans', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0;
+      background-color: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* ─── ヒーロー ─── */
+    .hero-section {
+      background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #00897B 100%);
+      color: var(--light-text-color);
+      padding: 48px 32px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 60%, rgba(255,255,255,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,193,7,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-section h1 {
+      font-size: 2.4em;
+      color: #fff;
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 14px;
+      position: relative;
+      line-height: 1.25;
+    }
+    .hero-section h1 em {
+      font-style: normal;
+      color: var(--accent-color-2);
+    }
+    .hero-section p {
+      font-size: 1.08em;
+      opacity: 0.92;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-tags {
+      margin-top: 24px;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+      position: relative;
+    }
+    .hero-tags span {
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.82em;
+      font-weight: 600;
+    }
+
+    /* ─── 共通見出し ─── */
+    h2 {
+      font-size: 1.75em;
+      color: var(--accent-color-3);
+      border-left: 5px solid var(--accent-color-3);
+      padding-left: 14px;
+      margin-top: 2.2em;
+      margin-bottom: 0.6em;
+    }
+    h3 {
+      font-size: 1.25em;
+      color: var(--accent-color-1);
+      margin-top: 1.6em;
+      margin-bottom: 0.7em;
+    }
+    h4 { color: var(--main-color); margin-bottom: 0.5em; font-size: 1.05em; }
+
+    strong { color: var(--accent-color-4); }
+    p { margin-bottom: 1em; }
+    ul, ol { padding-left: 25px; }
+    li { margin-bottom: 0.55em; }
+
+    /* ─── コンテンツ内側パディング ─── */
+    .content-body { padding: 8px 36px 44px; }
+
+    /* ─── ベネフィット箇条書き ─── */
+    .benefits-section ul li::before {
+      content: '✅ ';
+      color: var(--main-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    /* ─── 引用 ─── */
+    .quote {
+      background-color: #f5f0fe;
+      border-left: 5px solid var(--accent-color-1);
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-style: italic;
+      border-radius: 0 10px 10px 0;
+    }
+    .quote p { margin-bottom: 4px; font-size: 0.94em; color: #4A148C; }
+    .quote .attr { font-style: normal; font-size: 0.76em; color: #7B1FA2; font-weight: 600; }
+
+    /* ─── 感想カード ─── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .testimonial {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px 20px 18px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 4px; left: 14px;
+      font-size: 3rem;
+      color: var(--accent-color-1);
+      opacity: 0.18;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .testimonial p {
+      font-size: 0.88em;
+      color: #5A6B7A;
+      line-height: 1.65;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial .t-meta {
+      font-size: 0.74em;
+      color: #8899A6;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .testimonial .t-badge {
+      display: inline-block;
+      background: var(--accent-color-3);
+      color: #fff;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-weight: 700;
+      font-size: 0.95em;
+    }
+
+    /* ─── プロセス ─── */
+    .process-section ol {
+      list-style: none;
+      counter-reset: step-counter;
+      padding-left: 0;
+    }
+    .process-section li {
+      counter-increment: step-counter;
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 48px;
+    }
+    .process-section li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0; top: 0;
+      width: 34px; height: 34px;
+      background-color: var(--accent-color-2);
+      color: var(--text-color);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      font-weight: 700;
+      font-size: 1em;
+    }
+    .process-section li h4 { margin-top: 0; }
+    .process-section li p { font-size: 0.9em; color: #5A6B7A; margin-bottom: 0; }
+
+    /* ─── Mermaid ─── */
+    .mermaid { text-align: center; margin: 24px 0 20px; }
+    .mermaid-wrap {
+      background: #fafafa;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px 16px;
+      margin: 20px 0 30px;
+      overflow-x: auto;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section dt {
+      font-weight: 700;
+      color: var(--accent-color-3);
+      margin-top: 1.2em;
+      font-size: 0.97em;
+    }
+    .faq-section dd {
+      margin-left: 1.5em;
+      margin-bottom: 0.8em;
+      font-size: 0.9em;
+      color: #5A6B7A;
+      line-height: 1.65;
+    }
+
+    /* ─── ハイライトバナー ─── */
+    .highlight-banner {
+      background: linear-gradient(135deg, #E8F5E9, #E0F2F1);
+      border: 1px solid #C8E6C9;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .highlight-banner .hb-icon { font-size: 2rem; flex-shrink: 0; line-height: 1.2; }
+    .highlight-banner h4 { color: #2E7D32; margin-top: 0; margin-bottom: 4px; }
+    .highlight-banner p { font-size: 0.88em; color: #2E7D32; margin: 0; }
+
+    /* ─── レスポンシブ ─── */
+    @media (max-width: 560px) {
+      .content-body { padding: 8px 20px 36px; }
+      .hero-section { padding: 36px 20px 32px; }
+      .hero-section h1 { font-size: 1.8em; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .highlight-banner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ══════ ヒーロー ══════ -->
+  <section class="hero-section">
+    <h1>Skywork を<em>本当に活かす</em><br>ためのガイド</h1>
+    <p>AIツール「Skywork」の特徴や具体的な使い方を、参加者の声をもとに整理した図解まとめです。</p>
+    <div class="hero-tags">
+      <span>🎯 機能の全体把握</span>
+      <span>📊 スライド・グラフ生成</span>
+      <span>💡 実践的な活用法</span>
+    </div>
+  </section>
+
+  <div class="content-body">
+
+  <!-- ══════ この内容から得られること ══════ -->
+  <section class="benefits-section">
+    <h2>🎯 この内容から得られること</h2>
+
+    <h3>主な学習内容 / トピック</h3>
+    <ul>
+      <li>Skyworkの<strong>多機能な機能の全体構造</strong>を把握できる</li>
+      <li>「名前しか知らなかった」状態から<strong>具体的な使い方</strong>まで学べる</li>
+      <li><strong>スライドやグラフの高品質な出力</strong>の仕組みと色使いの優れた点を理解できる</li>
+      <li>他のAIツール（Manus・Genspark など）との<strong>強みの違い・優先順位の見極め方</strong>を考えられる</li>
+    </ul>
+
+    <h3>💡 具体的にできるようになること / 成果</h3>
+    <ul>
+      <li>Skyworkに登録し、すぐに業務や学習で活用できるようになる</li>
+      <li>色使いが分かりやすい<strong>スライド・グラフを自社や個人の用途で生成</strong>できる</li>
+      <li>複数AIツールを持っている場合にも、適切な優先順位を付けて活用できる</li>
+    </ul>
+
+    <h3>✨ 期待される変化 / ポジティブな影響</h3>
+    <div class="highlight-banner">
+      <span class="hb-icon">💎</span>
+      <div>
+        <h4>知識習得から実践へ「すぐに動く」体験</h4>
+        <p>参加者の多数がセミナー直後にSkyworkに登録し活用を開始しています。「見識が深まった」「具体的な使い方を学べた」という声にもとなり、知識とアクションの距離が短い内容です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ 参加者の声（感想） ══════ -->
+  <section class="proof-section">
+    <h2>💬 参加者の声</h2>
+    <p style="font-size:0.9em;color:#5A6B7A;">実際に参加した方々がどのような体験をしたか、感想をそのままお伝えします。</p>
+
+    <!-- 声①～⑤ カード -->
+    <div class="testimonial-grid">
+
+      <div class="testimonial">
+        <p>Skywork<strong>名前しか知らなかった</strong>ので具体的な使い方を学べてよかったです！ありがとうございました！</p>
+        <div class="t-meta">
+          <span class="t-badge">30代</span>
+          求職中・その他
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>スカイワーク、<strong>どんな機能があるのか、どんなふうに活用すれば良いのか</strong>気になっていたので、今回のセミナーで見識が深まりました。さっそく登録したので、活用していきたいと思います！</p>
+        <div class="t-meta">
+          <span class="t-badge">30代</span>
+          会社員（正社員・公務員）
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>skyworkはじめてだった自分的には特徴などもわかりやすく、特に<strong>スライドやグラフの色使いがよく分かりやすい出力する</strong>んだというのがよく分かりました。</p>
+        <div class="t-meta">
+          <span class="t-badge">40代</span>
+          会社員（正社員・公務員）
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>Skywork、<strong>大変多機能なのはありがたい</strong>んですが、ManusとかGensparkとかいろいろ課金していると<strong>Skyworkまで手が回らない</strong>のが悩ましいです。</p>
+        <div class="t-meta">
+          <span class="t-badge">50代</span>
+          会社員（正社員・公務員）
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>今回も<strong>最新情報</strong>ありがとうございました、<strong>実際に使えるようになる勉強会</strong>など実施していただければ嬉しいです。</p>
+        <div class="t-meta">
+          <span class="t-badge">50代</span>
+          個人事業主・フリーランス
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 声の傾向を引用块で添え書き -->
+    <div class="quote">
+      <p>"はっしーさんの尺が長かったですね（笑）" / "けいたろうさん、Hassyさんの掛け合いが面白く、毎回お二人の漫才が楽しみです"</p>
+      <p class="attr">— 複数の参加者より｜講師のトーク・エンタメ性も高く評価されている</p>
+    </div>
+
+    <!-- 声をまとめた関係図 -->
+    <h3>📋 感想の傾向まとめ</h3>
+    <div class="mermaid-wrap">
+<pre class="mermaid">
+graph TD
+    Center["💬 参加者の声の傾向"]:::center
+
+    Center --> A["✅ 機能・使い方の理解<br/>「名前しか知らなかった」から<br/>具体的な使い方へ"]:::positive
+    Center --> B["✅ 出力品質への感動<br/>スライド・グラフの<br/>色使いが分かりやすい"]:::positive
+    Center --> C["✅ 実践への橋渡し<br/>セミナー直後に登録・<br/>活用開始へ"]:::positive
+    Center --> D["⚡ ツール優先順位の悩み<br/>複数ツール課金の中で<br/>Skyworkの位置づけが不明確"]:::concern
+    Center --> E["⚡ 実践的勉強会への期待<br/>「使えるようになる」<br/>研修を望む声あり"]:::concern
+
+    classDef center fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:700
+    classDef positive fill:#E8F5E9,stroke:#66BB6A,color:#2E7D32,font-weight:600
+    classDef concern fill:#FFF3E0,stroke:#FFB74D,color:#E65100,font-weight:600
+</pre>
+    </div>
+  </section>
+
+  <!-- ══════ プロセス ══════ -->
+  <section class="process-section">
+    <h2>➡️ Skyworkを活かすためのプロセス</h2>
+    <h3>具体的なステップ</h3>
+    <ol>
+      <li>
+        <h4>機能の全体把握</h4>
+        <p>「多機能」なツールの全体像を理解する。「何ができるか」を把握するのが第一歩。</p>
+      </li>
+      <li>
+        <h4>具体的な使い方の習得</h4>
+        <p>実際のインターフェースや操作フローを学ぶ。セミナーが「名前しか知らなかった」から「使い方がわかった」へを担っている。</p>
+      </li>
+      <li>
+        <h4>スライド・グラフの出力を体感</h4>
+        <p>特に高く評価された<strong>色使いの分かりやすいスライド・グラフ</strong>を実際に生成して、出力の品質を確認する。</p>
+      </li>
+      <li>
+        <h4>登録・実践開始</h4>
+        <p>「さっそく登録した」という声がある通り、理解した後すぐに登録して実務や学習に活用していく。</p>
+      </li>
+      <li>
+        <h4>他ツールとの優先順位の見極め</h4>
+        <p>Manus・Genspark など複数ツールがある場合に、Skyworkの強みを把握した上で業務に合った優先順位を決める。</p>
+      </li>
+    </ol>
+
+    <!-- プロセスフローチャート -->
+    <div class="mermaid-wrap">
+<pre class="mermaid">
+graph TD
+    S["🚀 スタート<br/>Skyworkに興味あり"]:::start
+    S --> A["1️⃣ 全体把握<br/>何ができるかを理解"]:::step
+    A --> B["2️⃣ 使い方習得<br/>セミナーで具体的に学ぶ"]:::step
+    B --> C["3️⃣ 出力確認<br/>スライド・グラフを生成"]:::highlight
+    C --> D["4️⃣ 登録・実践開始<br/>業務や学習に活用へ"]:::step
+    D --> E["5️⃣ 優先順位の見極め<br/>他ツールとの比較・調整"]:::step
+    E --> G["✅ 効果的に活用中"]:::goal
+
+    classDef start fill:#009688,stroke:#00695C,color:#fff,font-weight:700
+    classDef step fill:#fff,stroke:#4CAF50,color:#2E7D32,font-weight:600
+    classDef highlight fill:#FFC107,stroke:#F57F17,color:#333,font-weight:700
+    classDef goal fill:#4CAF50,stroke:#2E7D32,color:#fff,font-weight:700
+</pre>
+    </div>
+  </section>
+
+  <!-- ══════ Q&A ══════ -->
+  <section class="faq-section">
+    <h2>❓ 想定される疑問点 (Q&A)</h2>
+    <dl>
+
+      <dt>Q1: Skyworkは多機能すぎて何から始めればよいか分からない。どうすればよい？</dt>
+      <dd>A1: 参加者の体験では「全体把握」から入ることが有効でした。まず「何ができるか」の全体像を把握した後、スライドやグラフなど気になる機能を実際に試していくことで、理解が深まっています。</dd>
+
+      <dt>Q2: 既に Manus や Genspark を使っている。Skyworkも課金してまで使う必要がある？</dt>
+      <dd>A2: この悩みは実際に参加者の声にもありました。Skyworkの強みとして「スライドやグラフの色使いが分かりやすい高品質な出力」が挙げられています。他ツールとの強みの違いを把握し、業務に合った優先順位を見極めることが現実的なアプローチです。</dd>
+
+      <dt>Q3: セミナーの内容で実際に使えるようになれるか？</dt>
+      <dd>A3: 「さっそく登録した」「見識が深まった」という声がある通り、知識習得から実践への橋渡しは成功しています。ただし「実際に使えるようになる勉強会」を期待する声もある通り、より深い実践的な研修へのニーズもあります。</dd>
+
+      <dt>Q4: セミナー自体の雰囲気や進み方はどうだった？</dt>
+      <dd>A4: 複数の参加者が講師けいたろうさんとHassyさんの掛け合いや「漫才」のような雰囲気を楽しんでいたとの声があり、エンタメ性も高く評価されているようです。</dd>
+
+    </dl>
+  </section>
+
+  </div><!-- /.content-body -->
+</div><!-- /.container -->
+
+</body>
+</html>
